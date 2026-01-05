@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Waiting Wage | Stop Burning Cash</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #e5e5e5;
+        }
+        
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .cyber-gradient {
+            background: linear-gradient(90deg, #00f260 0%, #0575e6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .neon-border {
+            box-shadow: 0 0 10px rgba(0, 242, 96, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .neon-border:hover {
+            box-shadow: 0 0 20px rgba(0, 242, 96, 0.4);
+            border-color: #00f260;
+        }
+
+        .range-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            background: #1f1f1f;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #00f260;
+            cursor: pointer;
+            box-shadow: 0 0 15px #00f260;
+        }
+
+        .glitch-container {
+            position: relative;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- Hero / Calculator Section -->
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div class="max-w-md w-full space-y-8">
+            
+            <!-- Header -->
+            <div class="text-center space-y-2">
+                <div class="inline-block px-3 py-1 border border-green-500/30 rounded-full bg-green-900/10 mb-2">
+                    <span class="text-xs mono text-green-400 font-bold tracking-wider">● SYSTEM: ONLINE</span>
+                </div>
+                <h1 class="text-4xl font-extrabold tracking-tighter">
+                    THE <span class="cyber-gradient">WAITING WAGE</span>
+                </h1>
+                <p class="text-gray-400 text-sm">Calculate the cost of your idle time.</p>
+            </div>
+
+            <!-- The Calculator Card -->
+            <div class="bg-[#0a0a0a] border border-gray-800 rounded-2xl p-6 shadow-2xl neon-border relative overflow-hidden">
+                <!-- Inputs -->
+                <div class="space-y-6 relative z-10">
+                    
+                    <!-- Input 1: Dead Time -->
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-sm font-medium text-gray-300">Dead Time (Minutes/Day)</label>
+                            <span id="timeDisplay" class="text-green-400 mono font-bold">45 min</span>
+                        </div>
+                        <input type="range" min="0" max="240" value="45" class="range-slider" id="timeInput">
+                        <p class="text-xs text-gray-500 mt-1">Waiting for rides, bus, bathroom breaks, etc.</p>
+                    </div>
+
+                    <!-- Input 2: Days Per Week -->
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <label class="text-sm font-medium text-gray-300">Frequency (Days/Week)</label>
+                            <span id="daysDisplay" class="text-green-400 mono font-bold">5 days</span>
+                        </div>
+                        <input type="range" min="1" max="7" value="5" class="range-slider" id="daysInput">
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="h-px bg-gray-800 my-4"></div>
+
+                    <!-- Results Display -->
+                    <div class="text-center space-y-1">
+                        <p class="text-gray-400 text-xs uppercase tracking-widest">You are throwing away</p>
+                        <div class="flex justify-center items-baseline space-x-2">
+                            <span class="text-5xl font-black text-white" id="resultDisplay">$1,240</span>
+                            <span class="text-sm text-gray-500">/year</span>
+                        </div>
+                        <p class="text-xs text-red-400 mt-2" id="impactText">That's a new iPhone 15 Pro.</p>
+                    </div>
+
+                </div>
+
+                <!-- Background Effect -->
+                <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-green-500 rounded-full opacity-5 blur-2xl"></div>
+                <div class="absolute bottom-0 left-0 -mb-4 -ml-4 w-32 h-32 bg-blue-600 rounded-full opacity-5 blur-2xl"></div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="space-y-3">
+                <button onclick="copyLink()" class="w-full group relative bg-white text-black font-bold py-4 rounded-xl hover:bg-gray-200 transition-all active:scale-95 flex items-center justify-center space-x-2">
+                    <span>RECLAIM YOUR CASH NOW</span>
+                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </button>
+                <p class="text-center text-xs text-gray-500">
+                    Powered by Scrambly • Minimum Cashout: $1.00
+                </p>
+            </div>
+
+            <!-- Social Proof (Trust Triangle) -->
+            <div class="pt-6 border-t border-gray-800">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs font-bold text-gray-400">LIVE FEED</span>
+                    <div class="flex items-center space-x-1">
+                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span class="text-[10px] text-green-500">UPDATED NOW</span>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <!-- Fake Review 1 -->
+                    <div class="bg-[#111] p-3 rounded-lg border border-gray-800 flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-full bg-blue-900 flex items-center justify-center text-xs font-bold">JD</div>
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xs font-bold text-gray-200">J_Doe_99</span>
+                                <span class="text-[10px] text-gray-500">2m ago</span>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-1">Just cashed out $5 while waiting for my Uber Eats order. ⚡️</p>
+                        </div>
+                    </div>
+                     <!-- Fake Review 2 -->
+                     <div class="bg-[#111] p-3 rounded-lg border border-gray-800 flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-full bg-purple-900 flex items-center justify-center text-xs font-bold">S</div>
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xs font-bold text-gray-200">SarahK_</span>
+                                <span class="text-[10px] text-gray-500">14m ago</span>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-1">Literally the only app that paid me same-day. No BS.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script logic -->
+    <script>
+        const timeInput = document.getElementById('timeInput');
+        const daysInput = document.getElementById('daysInput');
+        const timeDisplay = document.getElementById('timeDisplay');
+        const daysDisplay = document.getElementById('daysDisplay');
+        const resultDisplay = document.getElementById('resultDisplay');
+        const impactText = document.getElementById('impactText');
+
+        // Conservative estimate: $10 per hour of "active" Scrambly time for beginners
+        // Or roughly $0.16 per minute.
+        const RATE_PER_MINUTE = 0.16; 
+
+        function updateCalculator() {
+            const minutes = parseInt(timeInput.value);
+            const days = parseInt(daysInput.value);
+            
+            // Update Text Displays
+            timeDisplay.innerText = `${minutes} min`;
+            daysDisplay.innerText = `${days} days`;
+
+            // Calculate Weekly and Yearly Loss
+            const weeklyLoss = minutes * days * RATE_PER_MINUTE;
+            const yearlyLoss = weeklyLoss * 52;
+
+            // Format Currency
+            resultDisplay.innerText = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                maximumFractionDigits: 0
+            }).format(yearlyLoss);
+
+            // Dynamic Impact Text
+            if (yearlyLoss < 100) {
+                impactText.innerText = "That's a free Netflix subscription.";
+            } else if (yearlyLoss < 500) {
+                impactText.innerText = "That's a car payment you threw away.";
+            } else if (yearlyLoss < 1000) {
+                impactText.innerText = "That's a round-trip flight to Europe.";
+            } else {
+                impactText.innerText = "That's a new iPhone 15 Pro Max.";
+            }
+        }
+
+        function copyLink() {
+            // Placeholder for the actual affiliate link action
+            // In a real scenario, this would window.location.href = 'YOUR_LINK';
+            const btn = document.querySelector('button span');
+            const originalText = btn.innerText;
+            
+            // Simulating a "Copied" or "Redirecting" state
+            btn.innerText = "REDIRECTING TO SECURE SERVER...";
+            setTimeout(() => {
+                // This is where you'd put your actual Scrambly link
+                alert("Redirecting to: https://go.scrambly.io/w9rnpt"); 
+                btn.innerText = originalText;
+            }, 1000);
+        }
+
+        // Event Listeners
+        timeInput.addEventListener('input', updateCalculator);
+        daysInput.addEventListener('input', updateCalculator);
+
+        // Initialize
+        updateCalculator();
+    </script>
+</body>
+</html>
+
